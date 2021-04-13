@@ -3,6 +3,9 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plot
 
+'''
+
+'''
 
 #使用numpy创建一个矩阵
 x_data = np.linspace(-1,1,300)[:,np.newaxis]
@@ -18,8 +21,9 @@ ys = tf.placeholder(tf.float32,shape=[None,1])
 
 #add hidden layer
 l1 = add_layer(xs,1,10,activation_function=tf.nn.relu)
+l2 = add_layer(l1,10,5,activation_function=tf.nn.sigmoid)
 #add output layer
-out = add_layer(l1,10,1,activation_function=None)
+out = add_layer(l2,5,1,activation_function=None)
 #定义loss function,平方损失
 loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys-out),reduction_indices=[1]))
 #优化方法
